@@ -16,8 +16,17 @@ const PORT = process.env.PORT || 3001;
 
 app.get('/books', async (request, response) => {
 
+let title = request.query.title;
+console.log(title);
   let result = [];
-  result = await books.find();
+  if (title){
+    result = await books.find({
+      title: title
+    })
+  }else {
+
+    result = await books.find();
+  }
 
   response.send(result);
 
