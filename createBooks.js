@@ -2,12 +2,13 @@
 
 require('dotenv').config();
 const mongoose = require('mongoose');
-const Books = require('./model/books.js');
+const Books = require('./models/books.js');
 const MONGODB_URL = process.env.MONGODB_URL;
 
 mongoose.connect(MONGODB_URL);
 
-Books.create({
+async function seedDataBase() {
+await Books.create({
   title: '',
   description: '',
   status: "Childhood Favorite"
@@ -18,3 +19,7 @@ Books.create({
 .catch(err => {
   console.log('Ugh oh, ', err);
 });
+mongoose.disconnect();
+}
+
+seedDataBase();
