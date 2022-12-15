@@ -49,11 +49,12 @@ app.delete('/books/:id', async(request, response)=>{
   response.send(deletedBook);
 })
 
-app.put('/books/id',async (request, response) => {
+app.put('/books/:id', async(request, response) => {
+  console.log('I am here');
   let id = request.params.id;
-  let updatedBook = await BookfindOneAndUpdate({ _id: id}, request.body);
+  const updatedBook = await books.findByIdAndUpdate(id, request.body, { new: true });
   console.log(updatedBook);
-  response.send(updatedBook);
+  response.status(200).send('it worked');
 })
 
 app.use
