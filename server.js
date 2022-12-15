@@ -54,7 +54,7 @@ app.put('/books/:id', async(request, response) => {
   let id = request.params.id;
   const updatedBook = await books.findByIdAndUpdate(id, request.body, { new: true });
   console.log(updatedBook);
-  response.status(200).send('it worked');
+  response.send(updatedBook);
 })
 
 app.use
