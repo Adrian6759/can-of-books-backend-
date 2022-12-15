@@ -49,6 +49,13 @@ app.delete('/books/:id', async(request, response)=>{
   response.send(deletedBook);
 })
 
+app.put('/books/id',async (request, response) => {
+  let id = request.params.id;
+  let updatedBook = await BookfindOneAndUpdate({ _id: id}, request.body);
+  console.log(updatedBook);
+  response.send(updatedBook);
+})
+
 app.use
 app.use('*', (request, response) => {
   response.status(500).send('Invalid Request, page not found.')
