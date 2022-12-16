@@ -7,11 +7,13 @@ const books = require('./models/books');
 const { default: mongoose } = require('mongoose');
 const { response } = require('express');
 const app = express();
+const authorize = require('./auth/authorize');
 
 const MONGODB_URL = process.env.MONGODB_URL;
 
 mongoose.connect(MONGODB_URL);
 app.use(cors());
+app.use(authorize);
 app.use(express.json());
 
 const PORT = process.env.PORT || 3001;
