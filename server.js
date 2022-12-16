@@ -30,9 +30,11 @@ app.get('/books', async (request, response) => {
     } else {
       result = await books.find()
     }
+    
   
     response.send(result).status(200)
     } catch (error) {
+      console.log(error.message)
       response.send(error).status(500)
     }
     
